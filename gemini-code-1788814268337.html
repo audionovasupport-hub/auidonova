@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUDIO NOVA — Nova Audio Buds 6</title>
+
+  <!-- GOOGLE ANALYTICS 4 (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg: #030305;
+      --bg-card: #09090e;
+      --bg-card-hover: #101118;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.22);
+      --accent-cyan: #00d2ff;
+      --accent-blue: #0066ff;
+      --accent-glow: rgba(0, 102, 255, 0.18);
+      --text: #f5f5f7;
+      --text-muted: #8e8e99;
+      --text-dim: #545461;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: #ffffff; color: #000000; }
+
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      padding: 20px 0; transition: all 0.3s ease; background: transparent;
+    }
+
+    header.scrolled {
+      background: rgba(3, 3, 5, 0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+
+    .nav-container {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 0.95rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text); text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cyan); }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.86rem; transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      font-family: var(--font); font-size: 0.84rem; font-weight: 500;
+      padding: 11px 24px; border-radius: 999px; border: 1px solid transparent;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.25s ease; text-decoration: none;
+    }
+
+    .btn-white { background: #ffffff; color: #000000; }
+    .btn-white:hover { background: #e4e4e7; transform: translateY(-1px); }
+
+    .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-outline:hover { border-color: var(--border-hover); background: rgba(255, 255, 255, 0.04); }
+
+    .hero {
+      position: relative; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 140px 24px 70px;
+    }
+
+    .hero-badge { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 20px; }
+
+    .hero-title { font-size: clamp(2.8rem, 6.5vw, 5.2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; max-width: 900px; margin-bottom: 22px; }
+
+    .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 560px; margin: 0 auto 36px; }
+
+    .hero-cta { display: flex; gap: 16px; align-items: center; margin-bottom: 50px; }
+
+    .hero-photo-wrap { position: relative; width: 100%; max-width: 620px; min-height: 380px; display: flex; align-items: center; justify-content: center; }
+
+    .hero-photo-wrap::before {
+      content: ''; position: absolute; width: 60%; height: 60%;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(50px); z-index: 0; pointer-events: none;
+    }
+
+    .product-img {
+      position: relative; z-index: 1; width: 100%; max-height: 460px;
+      object-fit: contain; filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.95));
+      transition: transform 0.4s ease;
+    }
+
+    .product-img:hover { transform: scale(1.02); }
+
+    .section-wrap { padding: 120px 32px; max-width: 1200px; margin: 0 auto; }
+    .section-head { margin-bottom: 60px; }
+    .section-head.center { text-align: center; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+    .section-kicker { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; display: block; }
+
+    .section-headline { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+
+    .features-bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+
+    .bento-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; transition: all 0.3s ease; }
+
+    .bento-cell:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+
+    .bento-cell.span-7 { grid-column: span 7; }
+    .bento-cell.span-5 { grid-column: span 5; }
+    .bento-cell.span-4 { grid-column: span 4; }
+
+    .bento-cell-photo { width: 100%; height: 250px; display: flex; align-items: center; justify-content: center; margin-top: 24px; }
+
+    .bento-cell-photo img { max-width: 85%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.8)); transition: transform 0.35s ease; }
+
+    .bento-cell:hover .bento-cell-photo img { transform: scale(1.04); }
+
+    .cell-title { font-size: 1.28rem; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .cell-desc { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+
+    .tech-row { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; padding: 60px 0; border-top: 1px solid var(--border); }
+    .tech-row:last-child { border-bottom: 1px solid var(--border); }
+
+    .tech-row.reverse .tech-copy { order: 2; }
+    .tech-row.reverse .tech-visual { order: 1; }
+
+    .tech-number { font-size: 0.8rem; color: var(--text-dim); font-weight: 500; margin-bottom: 12px; display: block; }
+    .tech-heading { font-size: 1.85rem; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .tech-paragraph { color: var(--text-muted); font-size: 0.98rem; line-height: 1.7; }
+
+    .tech-visual { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; height: 350px; display: flex; align-items: center; justify-content: center; padding: 32px; overflow: hidden; }
+
+    .tech-visual img { max-width: 85%; max-height: 85%; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.85)); }
+
+    .checkout-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; display: grid; grid-template-columns: 1.15fr 1fr; overflow: hidden; }
+
+    .checkout-gallery { background: #020204; padding: 50px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid var(--border); }
+
+    .checkout-main-img-box { width: 100%; height: 350px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+
+    .checkout-main-img-box img { max-width: 90%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.95)); transition: opacity 0.25s ease, transform 0.25s ease; }
+
+    .checkout-thumbnails { display: flex; gap: 12px; }
+
+    .thumb-btn { width: 58px; height: 58px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); padding: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+
+    .thumb-btn.active { border-color: #ffffff; background: #15151f; }
+    .thumb-btn img { width: 100%; height: 100%; object-fit: contain; }
+
+    .checkout-info { padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
+
+    .checkout-tag { font-size: 0.75rem; font-weight: 600; color: var(--accent-cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; }
+    .checkout-title { font-size: 2.3rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .checkout-price { font-size: 2.6rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 28px; color: #ffffff; }
+
+    .checkout-specs { list-style: none; margin-bottom: 36px; display: flex; flex-direction: column; gap: 12px; }
+    .checkout-specs li { display: flex; align-items: center; gap: 12px; color: var(--text-muted); font-size: 0.92rem; }
+    .checkout-specs li i { color: #ffffff; width: 16px; height: 16px; }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal-dialog { background: #0c0c12; border: 1px solid var(--border-hover); border-radius: 16px; max-width: 440px; width: 100%; padding: 40px 32px; text-align: center; transform: translateY(14px); transition: transform 0.25s ease; box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9); }
+
+    .modal-overlay.active .modal-dialog { transform: translateY(0); }
+
+    .modal-icon-ring { width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #ffffff; }
+
+    .modal-title { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 12px; }
+    .modal-message { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 28px; }
+    .modal-btn-confirm { width: 100%; padding: 13px; font-size: 0.88rem; }
+
+    footer { border-top: 1px solid var(--border); padding: 60px 32px 40px; background: var(--bg); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+    .footer-notice { font-size: 0.82rem; color: var(--text-dim); }
+
+    @media (max-width: 960px) {
+      .bento-cell.span-7, .bento-cell.span-5, .bento-cell.span-4 { grid-column: span 12; }
+      .tech-row, .tech-row.reverse { grid-template-columns: 1fr; gap: 36px; }
+      .tech-row.reverse .tech-copy { order: 1; }
+      .tech-row.reverse .tech-visual { order: 2; }
+      .checkout-card { grid-template-columns: 1fr; }
+      .checkout-gallery { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 20px; }
+      .checkout-info { padding: 36px 24px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="navbar">
+    <div class="nav-container">
+      <a href="#inicio" class="brand"><span class="brand-dot"></span><span>AUDIO NOVA</span></a>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#caracteristicas">Características</a></li>
+        <li><a href="#tecnologia">Tecnología</a></li>
+        <li><a href="#producto">Producto</a></li>
+      </ul>
+      <button class="btn btn-white buy-trigger" type="button">Comprar</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <span class="hero-badge">Nova Audio Buds 6</span>
+      <h1 class="hero-title">EL SONIDO DEL FUTURO</h1>
+      <p class="hero-subtitle">Acústica de estudio, cancelación activa de ruido adaptativa y un diseño biomecánico concebido para fundirse con tu oído.</p>
+      <div class="hero-cta">
+        <button class="btn btn-white buy-trigger" type="button">Comprar — 19,99 €</button>
+        <a href="#caracteristicas" class="btn btn-outline">Características</a>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="./1.png" alt="Nova Audio Buds 6" class="product-img" />
+      </div>
+    </section>
+
+    <section class="section-wrap" id="caracteristicas">
+      <div class="section-head">
+        <span class="section-kicker">Características</span>
+        <h2 class="section-headline">Ingeniería acústica sin artificios</h2>
+      </div>
+
+      <div class="features-bento">
+        <div class="bento-cell span-7">
+          <div>
+            <h3 class="cell-title">Cancelación activa de ruido (ANC)</h3>
+            <p class="cell-desc">Micrófonos externos e internos procesan el ruido ambiente en milisegundos generando una contrafrecuencia exacta que extingue el murmullo de fondo.</p>
+          </div>
+          <div class="bento-cell-photo">
+            <img src="./4.png" alt="Cancelación Activa de Ruido" />
+          </div>
+        </div>
+
+        <div class="bento-cell span-5">
+          <div>
+            <h3 class="cell-title">Bluetooth 4.4</h3>
+            <p class="cell-desc">Conexión inalámbrica instantánea de baja latencia con cualquier dispositivo, optimizando el consumo de batería durante todo el día.</p>
+          </div>
+          <div class="bento-cell-photo">
+            <img src="./2.png" alt="Conexión Bluetooth con Smartphone" />
+          </div>
+        </div>
+
+        <div class="bento-cell span-4">
+          <div>
+            <h3 class="cell-title">HD Voice</h3>
+            <p class="cell-desc">Captación vocal clara y nítida en llamadas, separando la voz de las ráfagas de viento y el bullicio urbano.</p>
+          </div>
+        </div>
+
+        <div class="bento-cell span-4">
+          <div>
+            <h3 class="cell-title">Sonido de alta calidad</h3>
+            <p class="cell-desc">Diafragmas afinados para otorgar graves con presencia, medios naturales y agudos transparentes sin distorsión.</p>
+          </div>
+        </div>
+
+        <div class="bento-cell span-4">
+          <div>
+            <h3 class="cell-title">Diseño cómodo y moderno</h3>
+            <p class="cell-desc">Estuche compacto tipo pebble con acabado mate sedoso, logotipo AUDIO NOVA grabado y luz indicadora de estado.</p>
+          </div>
+          <div class="bento-cell-photo" style="height: 140px; margin-top: 14px;">
+            <img src="./3.png" alt="Estuche cerrado con LED" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap" id="tecnologia">
+      <div class="section-head center">
+        <span class="section-kicker">Tecnología</span>
+        <h2 class="section-headline">El núcleo de la experiencia Nova</h2>
+      </div>
+
+      <div class="tech-row">
+        <div class="tech-copy">
+          <span class="tech-number">01 / Aislamiento Acústico</span>
+          <h3 class="tech-heading">Cancelación Activa de Ruido (ANC)</h3>
+          <p class="tech-paragraph">El sistema de cancelación activa analiza continuamente la frecuencia de las ondas sonoras exteriores. Al detectar ruidos repetitivos de baja frecuencia (tráfico, motores o climatización), genera una onda acústicamente invertida para neutralizar el sonido antes de que llegue al tímpano.</p>
+        </div>
+        <div class="tech-visual">
+          <img src="./4.png" alt="Detalle tecnológico ANC" />
+        </div>
+      </div>
+
+      <div class="tech-row reverse">
+        <div class="tech-copy">
+          <span class="tech-number">02 / Conectividad y Latencia</span>
+          <h3 class="tech-heading">Bluetooth 4.4 de bajo consumo</h3>
+          <p class="tech-paragraph">La arquitectura Bluetooth 4.4 está configurada para mantener una conexión robusta y sin interrupciones. La latencia reducida garantiza una sincronización fiel entre vídeo y audio en smartphones, ordenadores o tabletas, alargando la duración de cada ciclo de carga.</p>
+        </div>
+        <div class="tech-visual">
+          <img src="./2.png" alt="Enlace Bluetooth con smartphone" />
+        </div>
+      </div>
+
+      <div class="tech-row">
+        <div class="tech-copy">
+          <span class="tech-number">03 / Comunicaciones</span>
+          <h3 class="tech-heading">HD Voice y Claridad Vocal</h3>
+          <p class="tech-paragraph">La matriz de micrófonos incorpora filtros adaptativos que realzan el espectro de la voz humana. Tanto en reuniones profesionales como en llamadas telefónicas sobre la marcha, tu interlocutor escuchará un sonido limpio, natural y exento de eco o reverberación.</p>
+        </div>
+        <div class="tech-visual">
+          <img src="./5.png" alt="Micrófonos HD Voice y transductores" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap" id="producto">
+      <div class="checkout-card">
+        <div class="checkout-gallery">
+          <div class="checkout-main-img-box">
+            <img id="checkoutPreview" src="./5.png" alt="Nova Audio Buds 6 Vista de Compra" />
+          </div>
+          <div class="checkout-thumbnails">
+            <button class="thumb-btn active" onclick="changeCheckoutPhoto('./5.png', this)">
+              <img src="./5.png" alt="Miniatura 1" />
+            </button>
+            <button class="thumb-btn" onclick="changeCheckoutPhoto('./1.png', this)">
+              <img src="./1.png" alt="Miniatura 2" />
+            </button>
+            <button class="thumb-btn" onclick="changeCheckoutPhoto('./4.png', this)">
+              <img src="./4.png" alt="Miniatura 3" />
+            </button>
+            <button class="thumb-btn" onclick="changeCheckoutPhoto('./3.png', this)">
+              <img src="./3.png" alt="Miniatura 4" />
+            </button>
+            <button class="thumb-btn" onclick="changeCheckoutPhoto('./2.png', this)">
+              <img src="./2.png" alt="Miniatura 5" />
+            </button>
+          </div>
+        </div>
+
+        <div class="checkout-info">
+          <span class="checkout-tag">Edición Oficial</span>
+          <h2 class="checkout-title">Nova Audio Buds 6</h2>
+          <div class="checkout-price">19,99 €</div>
+          <ul class="checkout-specs">
+            <li><i data-lucide="check"></i> Cancelación activa de ruido (ANC)</li>
+            <li><i data-lucide="check"></i> Conexión inalámbrica Bluetooth 4.4</li>
+            <li><i data-lucide="check"></i> Micrófonos de estudio con HD Voice</li>
+            <li><i data-lucide="check"></i> Sonido de alta calidad y fidelidad de estudio</li>
+            <li><i data-lucide="check"></i> Diseño cómodo y moderno en acabado mate</li>
+          </ul>
+          <button class="btn btn-white buy-trigger" style="width: 100%; padding: 14px;" type="button">Comprar</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="tdrModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-dialog">
+      <div class="modal-icon-ring"><i data-lucide="info" style="width: 20px; height: 20px;"></i></div>
+      <h3 class="modal-title" id="modalTitle">Compra no disponible</h3>
+      <p class="modal-message">Este producto forma parte de un Trabajo de Recerca (TDR) realizado con fines exclusivamente académicos. No se realizan ventas reales.</p>
+      <button class="btn btn-white modal-btn-confirm" id="btnModalClose" type="button">Entendido</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="#inicio" class="brand"><span class="brand-dot"></span><span>AUDIO NOVA</span></a>
+      <p class="footer-notice">© 2026 AUDIO NOVA. Proyecto desarrollado con fines académicos en el marco del Treball de Recerca (TDR).</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+    });
+
+    function changeCheckoutPhoto(src, btnElement) {
+      const preview = document.getElementById('checkoutPreview');
+      preview.style.opacity = '0';
+      preview.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        preview.src = src;
+        preview.style.opacity = '1';
+        preview.style.transform = 'scale(1)';
+      }, 150);
+      document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
+    }
+
+    const modal = document.getElementById('tdrModal');
+    const buyButtons = document.querySelectorAll('.buy-trigger');
+    const btnModalClose = document.getElementById('btnModalClose');
+
+    buyButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (typeof gtag === 'function') {
+          gtag('event', 'click_comprar_tdr', { 'event_category': 'intencion_compra_tdr', 'event_label': 'Nova Audio Buds 6 - 19,99€', 'value': 19.99 });
+        }
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() { modal.classList.remove('active'); document.body.style.overflow = 'auto'; }
+    btnModalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+  </script>
+</body>
+</html>
